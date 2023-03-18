@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<HTML>
+    <meta charset="utf-8">
+    <head>
+        <title>CSS Basics</title>
+
+        <style>
+            .indent1{
+                text-indent: 25px;
+            }
+
+            .indent2{
+                text-indent: 50px;
+                text-align: justify;
+                text-justify: inter-word;
+            }
+
+            .highlightCode{
+                color: magenta;
+                background-color: lightgrey;
+            }
+
+            .language-css{
+                background-color: darkslategray;
+                border-style: groove;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <h1>Basic Syntax</h1>
+        
+        <img src="images/css-syntax.jpg" alt="Basic CSS Syntax">
+
+        <h1>Selectors</h1>
+        <p>- Refer to HTML elements to which CSS Rules are applied</p>
+
+        <h2 class="indent1">Universal Selectors</h2>
+            <p class="indent1">- selects elements of any type</p>
+            <p class="indent1">- syntax is denoted with an <strong><em>*</em></strong></p>
+
+        <h2 class="indent1">Type Selectors</h2> 
+            <p class="indent1">- selects elements of the given element type</p>
+            <p class="indent1">- syntax is denoted with the <strong><em>name of the element</em></strong></p>
+
+        <h2 class="indent1">Class Selectors</h2>
+            <p class="indent1">- selects all elements of a given class, which is just an attribute you place on an HTML element.</p>
+            <p class="indent1">- syntax is denoted with period <strong><em>.</em></strong> followed by the <strong><em>case-sensitive value of the class attribute</em></strong>, e.g .alert-text</p>
+            <p class="indent1">- you can add <strong>multiple classes</strong> to a <strong>single element</strong> as a space-separated list</p>
+                <p class="indent2", style="color: purple;">Ex: class="alert-text severe-alert"</p>
+                <p class="indent2">- since <u>whitespace</u> is used to separate class names, you should <strong>never use spaces for multi-worded names</strong> and instead use <strong>hyphen</strong></p>
+
+        <h2 class="indent1">ID Selectors</h2>
+            <p class="indent1">- selects an element with the given <em>ID</em>, a similar attribute to <em>class</em></p>
+            <p class="indent1">- syntax denoted by <strong><em>#</em></strong> folowed by the <strong><em>case-sensitive value of the ID attribute</em></strong></p>
+                <p class="indent2">- the difference between class an ID is that an element can only have <strong>one ID</strong></p>
+                <p class="indent2">- Use IDs <strong>sparingly</strong>. Instead use classes whenever possible</p>
+                <p class="indent2">- IDs can be used to take advantage of <strong>specificity</strong> or <strong>having links redirect to a section on the current page.</strong></p>
+
+        <h2 class="indent1">Grouping Selectors</h2>
+            <img src="images/selectors/grouping-selector.png">
+            <p class="indent1">- selects groups of elements that share the same style delcarations to <u>cut down on repitition</u></p>
+            <p class="indent1">- selectors are grouped together as a <u>comma-separated list</u></p>
+
+        <h2 class="indent1">Chaining Selectors</h2> 
+            <p class="indent1">- this allows you to chain selectors without any separation</p>
+            <p class="indent2"><img src="images/selectors/chaining-selectors1.png"></p>
+                <p class="indent2">Ex. if there are two or more elements that share the class <code class="highlightCode">subsection</code>, but you'd like to apply a rule to another element that also has the <code class="highlightCode">header</code> class, you can <strong>chain</strong> both class selectors like so:</p>
+
+                <p class="indent2"><img src="images/selectors/chaining-selectors2.png"></p>
+
+                <p class="indent2">- <code class="highlightCode">.subsection.header</code> selects all elements that has both the <code class="highlightCode">subsection</code> and the <code class="highlightCode">header</code> classes</p>
+
+                <p class="indent2"><Strong>Note:</Strong> you can't chain more than one type of selector since an element <u>can't be two different types at once</u>, e.g if <code class="highlightCode">subsection</code> is under a <em>div</em> element and <code class="highlightCode">header</code> is under a <em>p</em> element</p>
+
+                <p class="indent2">- you can also chain a <strong>class</strong> and <strong>ID</strong>, e.g <code class="highlightCode">.subsection#preview</code></p>
+
+                <p class="indent2"><img src="images/selectors/chaining-selectors3.png"></p>
+                <p class="indent2"><img src="images/selectors/chaining-selectors4.png"></p>
+
+        <h2 class="indent1">Descendant Combinator</h2> 
+            <p class="indent1">- one of four types of combinators, where the last selector will be selected <u>only if</u> they have an <em>ancestor</em> that <u>matches the previous selector</u></p>
+
+            <p class="indent1">- syntax denoted by <u>space</u> between selectors, e.g <code class="highlightCode">.ancestor .child</code></p>
+                <p class="indent2">- where the selector <code class="highlightCode">.ancestor .child</code> selects any or all emements with class <code class="highlightCode">child</code> <strong><em>if</em></strong> it has an ancestor with the class <code class="highlightCode">ancestor</code></p>
+
+                <p class="indent2">- the class <code class="highlightCode">child</code> will only be selected if it is <u>nested inside of the class <code class="highlightCode">ancestor</code></u>, <strong><em>no matter how deep</em></strong></p>
+
+                <p class="indent2"><img src="images/selectors/descendant-combinators.png"></p>
+                <p class="indent2">- in this example, classes B and C will be selected, but not D because it doesn't have A as its ancestor</p>
+        
+        <h1>Properties to Get Started With</h1>
+        <h2 class="indent1">Color and Background-Color</h2>
+            <p class="indent1">- <code class="highlightCode">color</code> alters an element's <u>text color</u>, while <code class="highlightCode">background color</code> alters... <u>background color</u></p>
+
+            <p class="indent1">- these properties accept <u>one of several kinds of values</u></p>
+                <p class="indent2">- keyword e.g <code class="highlightCode">red</code> or <code class="highlightCode">transparent</code></p>
+                <p class="indent2">- HEX</p>
+                <p class="indent2">- RGB</p>
+                <p class="indent2">- HSL</p>
+
+        <h2 class="indent1">Typography Basics and Text-Align</h2>
+            <p class="indent1">- <code class="highlightCode">font-family</code> can have a <u>single value</u> or a <u>comma-separated list of values</u>. Each font can either be a "font family name" like <code class="highlightCode">"DejaVu Sans</code> (quotes used due to the <u>whitespace</u> between words) or a "generic family name" like <code class="highlightCode">sans-serif</code></p>
+
+            <p class="indent1">- if a browser can't find or does not support a font in a list, it will use the succeeding fonts until it finds one that it supports. This is why it's <u>best practice</u> to include a <strong>list of values</strong> starting with the font you'd like to be used the most</p>
+                <p class="indent2">Ex. <code class="highlightCode">font-family: "DejaVu Sans", sans-serif;</code></p>
+
+            <p class="indent1">- <code class="highlightCode">fon-size</code> changes the size of the font; the value <u>should not contain any whitespace</u></p>
+                <p class="indent2">Ex. <code class="highlightCode">font-size: 22px</code>, where there's no space between "22" and "px"</p>
+
+            <p class="indent1">- <code class="highlightCode">font-weight</code> affects boldness of the text. Values can be:</p>
+                <p class="indent2">- keyword, e.g <code class="highlightCode">font-weight: bold</code></p>
+                <p class="indent2">- a number between 1 and 1000, e.g <code class="highlightCode">font-weight: 700</code> (the equivalent of <code class="highlightCode">bold</code>)</p>
+
+            <p class="indent1">- <code class="highlightCode">text-align</code> aligns text <u>horizontally</u> within an element. Keywords can be used as values:</p>
+                <p class="indent2">Ex. <code class="highlightCode">text-align: center</code></p>
+            
+            <p class="indent1"><strong>Basic Typography Properties</strong></p>
+                <p class="indent2">- <code class="highlightCode">font-family</code></p>
+                <p class="indent2">- <code class="highlightCode">font-size</code></p>
+                <p class="indent2">- <code class="highlightCode">font-weight</code></p>
+                <p class="indent2">- <code class="highlightCode">text-align</code></p>
+
+        <h2 class="indent1">Image Height and Width</h2>
+            <p class="indent1">- an <code class="highlightCode">img</code> element's <code class="highlightCode">height</code> and <code class="highlightCode">width</code> will be the <u> same as the image's actual height and width.</u> If you want adjust the image's size <strong>without losing its proportions</strong>, use the value <strong><em>auto</em></strong> for the <code class="highlightCode">height</code> property and adjust the <code class="highlightCode">width</code> like so: </p>
+
+            <p class="indent1"><img src="images/img-height-width.png"></p>
+
+            <p class="indent1">- it's a good idea to <u>always explicitly state <code class="highlightCode">height</code> and <code class="highlightCode">width</code> values</u> because it <strong>"reserves"</strong> the space on the page and keeps the content from shifting around in case the image is slow to load in</p>
+        <h1>The Cascade of CSS</h1>
+        <p class="indent1">- the <strong>cascade</strong> determines which rules actually get applied to HTML elements based on different factors</p>
+
+            <h2 class="indent1">Specificity</h2>
+            <p class="indent1">- determining which rules are applied is based on a <u>hierarchy</u> of <em>specificity</em>, summed up by:</p>
+                <ol class="indent2">
+                    <li>ID selectors (most specific selector)</li>
+                    <li>Class selectors</li>
+                    <li>Type selectors</li>
+                    <li>Universal selector <code class="highlightCode">*</code>, as well as combinators <code class="highlightCode">+</code>, <code class="highlightCode">-</code>, <code class="highlightCode">&lt;</code> or <code class="highlightCode">&gt;</code>, and an empty space have <u>no specificty value</u></li>
+                </ol>
+            <p class="indent1">- <em>specificity</em> <u>will only be taken into account when there are <strong>multiple conflicting declarations on the same element</strong></u></p>
+            <p class="indent1">- when no declaration has a selector with a higher specificty value, the rule that gets applied will be determined by the selector that has a <strong>larger amount</strong>, as illustrated below:</p>
+
+                <pre class="language-css"><code class="language-html">
+                    &lt;div class="main"&gt;
+                        &lt;div class="list subsection"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+    </body>
+</HTML>
