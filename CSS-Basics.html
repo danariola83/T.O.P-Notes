@@ -79,7 +79,7 @@
                 <p class="indent2"><img src="images/selectors/chaining-selectors3.png"></p>
                 <p class="indent2"><img src="images/selectors/chaining-selectors4.png"></p>
 
-        <h2 class="indent1">Descendant Combinator</h2> 
+            <h2 class="indent1">Descendant Combinator</h2> 
             <p class="indent1">- one of four types of combinators, where the last selector will be selected <u>only if</u> they have an <em>ancestor</em> that <u>matches the previous selector</u></p>
 
             <p class="indent1">- syntax denoted by <u>space</u> between selectors, e.g <code class="highlightCode">.ancestor .child</code></p>
@@ -91,7 +91,7 @@
                 <p class="indent2">- in this example, classes B and C will be selected, but not D because it doesn't have A as its ancestor</p>
         
         <h1>Properties to Get Started With</h1>
-        <h2 class="indent1">Color and Background-Color</h2>
+            <h2 class="indent1">Color and Background-Color</h2>
             <p class="indent1">- <code class="highlightCode">color</code> alters an element's <u>text color</u>, while <code class="highlightCode">background color</code> alters... <u>background color</u></p>
 
             <p class="indent1">- these properties accept <u>one of several kinds of values</u></p>
@@ -142,10 +142,83 @@
             <p class="indent1">- <em>specificity</em> <u>will only be taken into account when there are <strong>multiple conflicting declarations on the same element</strong></u></p>
             <p class="indent1">- when no declaration has a selector with a higher specificty value, the rule that gets applied will be determined by the selector that has a <strong>larger amount</strong>, as illustrated below:</p>
 
-                <pre class="language-css"><code class="language-html">
-                    &lt;div class="main"&gt;
-                        &lt;div class="list subsection"&gt;&lt;/div&gt;
-                    &lt;/div&gt;
-                </code></pre>
+                <p class="indent2"><img src="images/Cascade-of-CSS/specificty/spec1.png"></p>
+                <p class="indent2">- in this example, both rules use class selectors, but rule 2 is more specific because it uses <strong>more class selectors</strong>, in which case rule 2 would take precedence</p>
+
+                <p class="indent2"><img src="images/Cascade-of-CSS/specificty/spec2.png"></p>
+                <p class="indent1">- in this example, despite rule 2 having more class selectors, rule 1 still takes precedence because it <strong>uses an ID selector</strong></p>
+
+                <p class="indent2"><img src="images/Cascade-of-CSS/specificty/spec3.png"></p>
+                <p class="indent2">- in this third example, even though both rules have ID selector <code class="highlightCode">#subsection</code>, rule 2 would take precedence, as it has a larger amount of selectors than rule 1</p>
+                <p class="indent2">- while the declaration <code class="highlightCode">color: red</code> would take precedence over <code class="highlightCode">color: blue</code>, rule 1's <code class="highlightCode">background-color: yellow</code> declaration <u>will still be aplied</u> because there's <strong>no conflicting declarations for it</strong></p>
+
+            <h3 class="indent1">Combinators and Universal Selectors</h3>
+            
+                <p class="indent2"><img src="images/Cascade-of-CSS/specificty/spec4.png"></p>
+                <p class="indent2">- rule 1 has a <em>chain selector</em>, while rule 2 has a <em>descendant combinator</em>, but both rules have the <u>same specificity values</u>. The combinator symbol (i.e empty space) <strong>does not add any specificity value</strong></p>
+
+                <p class="indent2"><img src="images/Cascade-of-CSS/specificty/spec5.png"></p>
+                <p class="indent2">- the child combinator (<code class="highlightCode">&gt;</code>) <strong>does not add any specificity</strong>. Rules 1 and 2 have the same specificity values</p>
+
+                <p class="indent2"><img src="images/Cascade-of-CSS/specificty/spec6.png"></p>
+                <p class="indent2">- in this example, rule 2 would take precedence because it uses a <strong>type selector</strong> over rule 1's <strong>universal selector</strong> <code class="highlightCode">*</code>. Despite <em>type selectors</em> having the <u>lowest specificity value</u>, it still has more over the universal selector <code class="highlightCode">*</code> which has <u>no specificity value</u>.</p>
+
+            <h2 class="indent1">Inheritance</h2>
+            <p class="indent1">- refers to properties that, when applied to an element, are <em>inherited</em> by said element's <strong>descendants</strong>, even if rules aren't explicity written for those descendants. Typography properties (e.g <code class="highlightCode">color</code>, <code class="highlightCode">font-size</code>, <code class="highlightCode">font-family</code>, etc.) are usually inherited</p>
+
+            <p class="indent1">- an <u>exception</u> to this is when <strong>directly targeting an element</strong>, as this <strong>always beats inheritance</strong>:</p>
+            <p class="indent1"><img src="images/Cascade-of-CSS/inheritance/inheritance1.png"></p>
+            <p class="indent1">- despite the <code class="highlightCode">parent</code> element having a higher specificity as an ID, the <code class="highlightCode">child</code> element would <u>still have the <code class="highlightCode">color: blue</code> declaration</u> applied to it since it <strong>directly targets it</strong>, which overrides the inherited <code class="highlightCode">color: red</code> declaration from <code class="highlightCode">parent</code>.</p>
+
+            <h2 class="indent1">Rule Order</h2>
+            <p class="indent1">- <em>The final factor</em>. If all other factors have been taken into account, and there are still conflicting delcarations, the cascade determines which rule to apply based on the <strong><em>last rule</em></strong> that was defined</p>
+            <p class="indent1"><img src="images/Cascade-of-CSS/rule-order/rule-order.png"></p>
+            <p class="indent1">- for an element that has <u>both</u> the <code class="highlightCode">alert</code> and <code class="highlightCode">warning</code> classes, the cascade would consider the follwing factors:</p>
+                <ol class="indent2">
+                    <li><strong>inheritance</strong>, of which there is none. Neither is a parent/child of the other</li>
+                    <li><strong>specificity</strong>, but neither is more specific than the other (both are classes, same number of selectors)</li>
+                </ol>
+            <p class="indent1">- since the <code class="highlightCode">.warning</code> rule was <u>declared last</u>, and no other cascade factor applies, it will be the rule that is applied</p>
+
+        <h1>Adding CSS to HTML</h1>
+        <p>- ways to add CSS to your HTML</p>
+
+            <h2 class="indent1">External CSS</h2>
+            <p class="indent1">- where you create a <u>separate file</u> for the CSS, linking it inside the HTML's <code class="highlightCode">&lt;head&gt;</code> element using a <code class="highlightCode">&lt;link&gt;</code>:</p>
+
+            <p class="indent1"><img src="images/adding-CSS/external-css.png"></p>  
+
+            <p class="indent1">- the <code class="highlightCode">href</code> attribute is the <u>location of the CSS file</u>. It can either be: <u>absolute</u> or <u>relative</u>. In this example where a relative URL is used, the CSS and HTML files are in the same directory.</p> 
+            <p>- The <code class="highlightCode">rel</code> attribute <u>specifies the relationship between the HTML file and the linked file.</u></p>
+
+            <p class="indent1">- The contents of <code class="highlightCode">styles.css</code> are broken down as follows:</p>
+                <ol class="indent2">
+                    <li>the selectors <code class="highlightCode">div</code> and <code class="highlightCode">p</code></li>
+                    <li>the <u>opening and closing curly braces {}</u>, forming a <strong>declaration block</strong></li>
+                    <li>the declarations themselves, i.e <code class="highlightCode">color: white;</code></li>
+                </ol>
+            
+            <p class="indent1">Pros of the External CSS method:</p>
+                <ul class="indent2">
+                    <li>Separating the HTML and CSS files keeps the former smaller and cleaner</li>
+                    <li>Having a single CSS file for all the styles of a website with <u>multiple pages</u> makes thing easier and simple if all those pages share similar styles</li>
+                </ul>
+            
+            <h2 class="indent1">Internal CSS</h2>
+            <p class="indent1">- adds the CSS within the HTML file itself. All rules are placed inside opening and closing <code class="highlightCode">&lt;style&gt;</code> tags, which are inside the <code class="highlightCode">&lt;head&gt;</code> tags. Because the CSS is alreaedy contained inside the <code class="highlightCode">&lt;head&gt;</code> tags within the HTML file, we don't need the <code class="highlightCode">&lt;link&gt;</code> element anymore that's used in the external method</p>
+
+            <p class="indent1">- the Internal CSS method is useful for applying styles that are specific to a <em>single page</em> of a website</p>
+            
+            <h2 class="indent1">Inline CSS</h2>
+            <p class="indent1">- adds styles directly to and <u>within the HTML elements themselves</u></p>
+            <p class="indent1"><img src="images/adding-CSS/inline-css.png"></p>
+
+            <p class="indent1">- the inline method <u>doesn't use selectors</u>. Instead, the attribute <code class="highlightCode">style=</code> is used, and the <u>declarations are contained inside quotation marks ""</u>. The inline method can be useful if you want to apply a <em>unique</em> style to a <em>single</em> element. But other than that, the inline method isn't ideal for these reasons:</p>
+                <ul class="indent2">
+                    <li>Adding inline styles to different elements within an HTML file can become messy very quickly, and hard to keep track of</li>
+                    <li>If the same declaration needs to be applied to multiple elements, it can become bloated and messy. It'd be better to use an Internal CSS with class, group, or chain selectors</li>
+                    <li>Inline CSS styles will <strong>override</strong> Internal and External styles, which can cause confusing and unexpected results, especially if an HTML file uses <u>more than one method</u></li>
+                </ul>
+
     </body>
 </HTML>
